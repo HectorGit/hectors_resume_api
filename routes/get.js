@@ -62,7 +62,8 @@ getrouter.get("/get_work_experiences",
 getrouter.get("/get_work_experience_projects/:project_key", 
     async(req,res) => {
         project_key = req.params.project_key
-        text = `select * from work_experience_projects where project_key=$1`
+        console.log("project key : ", project_key)
+        text = `select * from work_experience_projects where projects_key=$1`
         values = [project_key]
         query(text,values, (err,result) =>{
             if (err) return dbFail.failSafe(err, res);
