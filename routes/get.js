@@ -26,4 +26,49 @@ getrouter.get("/get_programming_tools",
     }
 );
 
+getrouter.get("/get_awards", 
+    async(req,res) => {
+        text = `select * from awards`
+        values = []
+        query(text,values, (err,result) =>{
+            if (err) return dbFail.failSafe(err, res);
+            return res.status(200).send(result.rows)
+        })
+    }
+);
+
+getrouter.get("/get_certifications", 
+    async(req,res) => {
+        text = `select * from certifications`
+        values = []
+        query(text,values, (err,result) =>{
+            if (err) return dbFail.failSafe(err, res);
+            return res.status(200).send(result.rows)
+        })
+    }
+);
+
+getrouter.get("/get_work_experiences", 
+    async(req,res) => {
+        text = `select * from work_experiences`
+        values = []
+        query(text,values, (err,result) =>{
+            if (err) return dbFail.failSafe(err, res);
+            return res.status(200).send(result.rows)
+        })
+    }
+);
+
+getrouter.get("/get_work_experience_projects/:project_key", 
+    async(req,res) => {
+        project_key = req.params.project_key
+        text = `select * from work_experience_projects where project_key=$1`
+        values = [project_key]
+        query(text,values, (err,result) =>{
+            if (err) return dbFail.failSafe(err, res);
+            return res.status(200).send(result.rows)
+        })
+    }
+);
+
 module.exports = getrouter;
