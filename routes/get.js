@@ -14,6 +14,13 @@ getrouter.get("/", (req, res) => {
     return res.send("Welcome to My Resume API! 🌝");
 });
 
+//simply to make sure the API is available for additional requests.
+getrouter.get("/wake_up_api", 
+    async(req,res) => {
+        return res.status(200).send("woke up the api")
+    }
+);
+
 //read all the programming tools
 getrouter.get("/get_programming_tools", 
     async(req,res) => {
